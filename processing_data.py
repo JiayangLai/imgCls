@@ -18,11 +18,12 @@ def appendImgLabel(par_path,cls,imgs,labels):
     imgs_cls = os.listdir(join(par_path, cls))
 
     for img in tqdm(imgs_cls):
-        img = cv2.imread(join(par_path, cls, img))
-        img = cv2.resize(img, (32, 32))
-        img = img.transpose(2,1,0)
-        imgs = imgs+[img]
-        labels = labels+[label]
+	if img.endswith('.bmp'):
+	    img = cv2.imread(join(par_path, cls, img))
+	    img = cv2.resize(img, (32, 32))
+	    img = img.transpose(2,1,0)
+	    imgs = imgs+[img]
+	    labels = labels+[label]
     return imgs,labels
 
 if __name__=="__main__":
